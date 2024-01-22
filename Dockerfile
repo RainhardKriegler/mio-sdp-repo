@@ -1,3 +1,9 @@
+FROM python:3.9-alpine as base
+
+RUN apk update
+RUN apk add python3-dev
+
+WORKDIR /app
 
 ENV FLASK_APP=flaskr
 
