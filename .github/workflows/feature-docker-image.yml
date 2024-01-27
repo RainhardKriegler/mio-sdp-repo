@@ -11,7 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
     
     - name: Build the Docker image
-      run: docker buildx build --platform linux/arm/v6 --target testing . --tag flask-mio
+      run: |
+        docker buildx create --use
+        docker buildx inspect --bootstrap
+        docker buildx build --platform linux/arm/v6 --target testing . --tag flask-mio
