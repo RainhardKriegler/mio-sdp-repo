@@ -1,10 +1,5 @@
-FROM arm32v6/3.9-alpine as base
-
-RUN apk update --no-cache add python3 py3-pip
-
-# Upgrade pip to the latest version
-RUN pip3 install --upgrade pip
-
+FROM arm32v6/python:3.9-alpine as base
+RUN apk update --no-cache
 RUN apk add python3-dev
 
 WORKDIR /app
