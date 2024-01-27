@@ -9,6 +9,10 @@ jobs:
   buildpush:
 
     runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        platform: [linux/arm]
 
     steps:
     - uses: actions/checkout@v3
