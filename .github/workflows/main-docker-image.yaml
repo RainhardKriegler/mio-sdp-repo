@@ -9,6 +9,10 @@ jobs:
   buildpush:
 
     runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        platform: [linux/arm]
 
     steps:
     - uses: actions/checkout@v3
@@ -21,7 +25,6 @@ jobs:
 
     - name: Build Docker image for development
       run: docker build --platform linux/arm/v6 --target development . --tag ${{ secrets.DOCKERNAME }}/flask-mio:dev
-      # run: docker build --target development . --tag ${{ secrets.DOCKERNAME }}/flask-mio:dev
 
     - name: Push to Docker Hub
       run: docker push ${{ secrets.DOCKERNAME }}/flask-mio:dev
